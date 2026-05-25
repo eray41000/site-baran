@@ -1,12 +1,469 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Eray Baran | Portfolio Développeur Web</title>
+    <style>
+        /* Variables de couleur - Palette plus dynamique et moderne */
+        :root {
+            --bg-color: #f4f7f6;
+            --text-color: #2b2d42;
+            --accent-color: #4f46e5; /* Violet/Bleu dynamique modern tech */
+            --accent-secondary: #06b6d4; /* Turquoise pour les tags */
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 2px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            margin-left: 1.5rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Espacement augmenté entre chaque section importante */
+        section {
+            max-width: 1100px;
+            margin: 6rem auto; /* Plus d'espace vertical pour aérer */
+            padding: 0 2rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Petite barre colorée sous les titres pour le style */
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
+            border-radius: 2px;
+        }
+
+        /* Hero Section colorée */
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #4f46e5 0%, #2563eb 50%, #06b6d4 100%);
+            color: white;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero p.subtitle {
+            font-size: 1.4rem;
+            color: #e0f2fe;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .hero p.intro-text {
+            max-width: 700px; 
+            margin: 0 auto; 
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        /* Cartes de Compétences */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .skills-card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .skills-card h3 {
+            margin-bottom: 1.2rem;
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .skills-list {
+            list-style: none;
+        }
+
+        .skills-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Puces colorées personnalisées */
+        .skills-list li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--accent-secondary);
+            font-weight: bold;
+        }
+
+        /* Parcours (Timeline) */
+        .timeline {
+            margin-top: 1rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: var(--accent-secondary);
+            font-size: 1rem;
+            background-color: #ecfeff;
+            display: inline-block;
+            padding: 0.1rem 0.6rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            border: 1px solid #cffafe;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Projets */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-content {
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-tag {
+            align-self: flex-start;
+            background-color: #eef2ff;
+            color: var(--accent-color);
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            border: 1px solid #e0e7ff;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-desc {
+            font-size: 0.95rem;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-skills {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 600;
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.8rem;
+        }
+
+        /* Boutons de Contact */
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .btn-contact {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-color), #2563eb);
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .btn-contact:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.2);
+        }
+
+        .btn-hero {
+            background: white;
+            color: var(--accent-color);
+            margin-top: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .btn-hero:hover {
+            background-color: #f8fafc;
+            color: #2563eb;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            background-color: #1e293b;
+            color: #94a3b8;
+            margin-top: 6rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            section { margin: 4rem auto; }
+        }
+    </style>
 </head>
 <body>
-    <h1>hello world</h1>
-    
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">ERAY.B</a>
+            <nav>
+                <a href="#about">À propos</a>
+                <a href="#skills">Compétences</a>
+                <a href="#parcours">Parcours</a>
+                <a href="#projets">Projets</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>Eray Baran</h1>
+        <p class="subtitle">Développeur Web & Intégrateur</p>
+        <p class="intro-text">
+            Étudiant en BUT Métiers du Multimédia et de l'Internet (MMI) à l'IUT de Blois.
+        </p>
+        <a href="#contact" class="btn-contact btn-hero">Me contacter</a>
+    </div>
+
+    <section id="about">
+        <h2>À Propos de Moi</h2>
+        <div style="background-color: var(--card-bg); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-top: 1rem;">
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;">J'ai 20 ans et je me suis lancé dans le développement web cette année pour découvrir progressivement le monde du web. Mon objectif est d'obtenir mon diplôme de BUT et d'accéder à un métier du web en continuant à apprendre et à pratiquer.</p>
+            <p style="font-size: 1.1rem;">Grâce aux projets universitaires (SAE) et aux nombreux travaux de ma formation, j'apprends à gérer des projets de A à Z tout en expérimentant de manière autonome pour construire mes compétences pas à pas</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Mes Compétences</h2>
+        <div class="skills-container">
+            <div class="skills-card">
+                <h3>Savoir-faire</h3>
+                <ul class="skills-list">
+                    <li>HTML5 / CSS3 </li>
+                    <li>Notions de JavaScript et PHP </li>
+                    <li>Intégration & mise en page web </li>
+                    <li>Réalisation de projets web (SAE)</li>
+                </ul>
+            </div>
+            <div class="skills-card">
+                <h3>Savoir-être</h3>
+                <ul class="skills-list">
+                    <li>Travail en équipe </li>
+                    <li>Organisation & gestion du temps </li>
+                    <li>Rigueur dans le travail </li>
+                    <li>Capacité d'adaptation & Autonomie</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="parcours">
+        <h2>Mon Parcours</h2>
+        <div class="timeline" style="background-color: var(--card-bg); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+            <div class="timeline-item">
+                <div class="timeline-date">2025 - 2026</div>
+                <h3>BUT Métiers du Multimédia et de l'Internet</h3>
+                <p><strong>IUT de Blois</strong> - Découverte du développement web, participation aux projets SAE, apprentissage pratique et autonome.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2024 - 2025</div>
+                <h3>Année d'études en Turquie</h3>
+                <p>Théologie : une expérience personnelle enrichissante et une réelle ouverture culturelle.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2023 - 2024</div>
+                <h3>1re année Licence Économie</h3>
+                <p>Une expérience de transition qui m'a permis de mieux cerner mes intérêts réels et de me réorienter.</p>
+            </div>
+            <div class="timeline-item" style="margin-bottom: 0;">
+                <div class="timeline-date">Obtenu en 2023</div>
+                <h3>Bac Général</h3>
+                <p>Spécialités SES, AMC (Anglais Monde Contemporain) et Mathématiques complémentaires.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projets">
+        <h2>Projets & Réalisations</h2>
+        <div class="projects-grid">
+            
+            <div class="project-card">
+                <div class="project-content">
+                    <span class="project-tag">Développer</span>
+                    <h3 class="project-title">Algo Lego</h3>
+                    <p class="project-desc">Conception, intégration de contenu et mise en forme d'un site web complet, structuré et fonctionnel sur le thème des algorithmes en Lego.</p>
+                    <p class="project-skills">Stack : HTML, CSS</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <span class="project-tag">Comprendre</span>
+                    <h3 class="project-title">Analyse comparative (Omega / Rolex)</h3>
+                    <p class="project-desc">Réalisation d'un dossier d'ergonomie et d'accessibilité comparant le design, l'expérience utilisateur et les stratégies de communication de deux grands sites.</p>
+                    <p class="project-skills">Aptitudes : Analyse, Esprit critique</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <span class="project-tag">Concevoir</span>
+                    <h3 class="project-title">Stratégie Binko (Dyson)</h3>
+                    <p class="project-desc">Élaboration d'une stratégie de communication numérique cohérente pour un produit fictif, avec ciblage et définition des messages.</p>
+                    <p class="project-skills">Aptitudes : Réflexion stratégique, Analyse</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <span class="project-tag">Entreprendre </span>
+                    <h3 class="project-title">Refonte digitale Blois-Chambord</h3>
+                    <p class="project-desc">Étude de l'existant et propositions d'améliorations stratégiques pour moderniser la présence en ligne et optimiser la visibilité de la marque.</p>
+                    <p class="project-skills">Aptitudes : Analyse des besoins utilisateurs </p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <span class="project-tag">Exprimer</span>
+                    <h3 class="project-title">Affiche de Musée (MAHA)</h3>
+                    <p class="project-desc">Création d'un visuel clair et attractif pour une exposition temporaire d'art antique, respectant les codes de la communication visuelle.</p>
+                    <p class="project-skills">Aptitudes : Composition graphique, Visuel</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Me Contacter</h2>
+        <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">Intéressé par mon profil ou envie de collaborer ? N'hésite pas à me joindre directement.</p>
+        <div class="contact-links">
+            <a href="mailto:eray.baran@icloud.com" class="btn-contact">eray.baran@icloud.com</a>
+            <a href="tel:0769430719" class="btn-contact btn-secondary">07 69 43 07 19</a>
+            <a href="https://www.linkedin.com/in/eray-baran" target="_blank" class="btn-contact btn-secondary">LinkedIn : Eray Baran</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Eray Baran - Présenté dans le cadre du BUT MMI Blois.</p>
+    </footer>
+
 </body>
 </html>
